@@ -1,0 +1,298 @@
+{
+    "format": 18,
+    "namespace": "pin",
+    "description": "this is a test",
+    "indent": 4,
+    "do_powerlist": true,
+    "origins": [
+        {
+            "id": "catboy",
+            "name": "Catboy",
+            "description": "Just a regular human if you don't count the ears and the tail... (my God why did i make this)",
+            "impact": 2,
+            "icon": {
+                "item": "minecraft:black_dye"
+            },
+            "powers": [
+                "pin:catboy/swift",
+                "pin:catboy/fragile",
+                "pin:catboy/pounce",
+                "pin:catboy/notswimmer",
+                "pin:catboy/nocturnal",
+                "pin:catboy/diet",
+                "pin:catboy/fisher",
+                "pin:catboy/meow"
+            ],
+            "unchoosable": false
+        }
+    ],
+    "powers": [
+        {
+            "id": "diet",
+            "category": "catboy",
+            "name": "Carnivore",
+            "description": "Your sharp teeth make it so you can only eat meat. Also, fish saturates you more.",
+            "type": "origins:multiple",
+            "eat": {
+                "type": "origins:modify_food",
+                "item_condition": {
+                    "type": "origins:ingredient",
+                    "ingredient": {
+                        "tag": "pin:raw_fish"
+                    }
+                },
+                "food_modifier": {
+                    "name": "Increased food points",
+                    "operation": "multiply_total",
+                    "value": 1.5
+                },
+                "saturation_modifier": {
+                    "name": "Increased saturation points",
+                    "operation": "multiply_total",
+                    "value": 1.5
+                }
+            },
+            "diet": {
+                "type": "origins:prevent_item_use",
+                "item_condition": {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:or",
+                            "conditions": [
+                                {
+                                    "type": "origins:ingredient",
+                                    "ingredient": {
+                                        "tag": "origins:meat"
+                                    }
+                                },
+                                {
+                                    "type": "origins:meat"
+                                }
+                            ],
+                            "inverted": true
+                        },
+                        {
+                            "type": "origins:food"
+                        },
+                        {
+                            "type": "origins:ingredient",
+                            "ingredient": {
+                                "tag": "origins:ignore_diet"
+                            },
+                            "inverted": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "fisher",
+            "category": "catboy",
+            "name": "Fisher",
+            "description": "Because you cant't have a job, you just fish and make fishing rods all day, making you an expert in the field.",
+            "type": "origins:recipe",
+            "recipe": {
+                "type": "minecraft:crafting_shapeless",
+                "id": "pin:catboys_quick_fishing_rod",
+                "ingredients": [
+                    {
+                        "item": "minecraft:stick"
+                    },
+                    [
+                        {
+                            "item": "minecraft:string"
+                        },
+                        {
+                            "item": "minecraft:iron_nugget"
+                        }
+                    ]
+                ],
+                "result": {
+                    "item": "minecraft:fishing_rod",
+                    "count": 1
+                }
+            }
+        },
+        {
+            "id": "fragile",
+            "category": "catboy",
+            "name": "Fragile",
+            "description": "You are a bit weaker than others.",
+            "type": "origins:attribute",
+            "modifier": {
+                "name": "Max health increase",
+                "attribute": "minecraft:generic.max_health",
+                "value": -4,
+                "operation": "addition"
+            }
+        },
+        {
+            "id": "meow",
+            "category": "catboy",
+            "name": "Meow",
+            "description": "You can purr, hiss and meow for some reason, which you enjoy to do.",
+            "type": "origins:multiple",
+            "purreow": {
+                "type": "origins:active_self",
+                "entity_action": {
+                    "type": "origins:and",
+                    "actions": [
+                        {
+                            "type": "origins:play_sound",
+                            "sound": "minecraft:entity.cat.purreow"
+                        }
+                    ]
+                },
+                "cooldown": 13,
+                "hud_render": {
+                    "should_render": false
+                },
+                "key": {
+                    "key": "key.origins.secondary_active",
+                    "continuous": false
+                },
+                "condition": {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:sneaking",
+                            "inverted": true
+                        }
+                    ]
+                }
+            },
+            "hiss": {
+                "type": "origins:active_self",
+                "entity_action": {
+                    "type": "origins:and",
+                    "actions": [
+                        {
+                            "type": "origins:play_sound",
+                            "sound": "minecraft:entity.cat.hiss"
+                        }
+                    ]
+                },
+                "cooldown": 13,
+                "hud_render": {
+                    "should_render": false
+                },
+                "key": {
+                    "key": "key.origins.secondary_active",
+                    "continuous": false
+                },
+                "condition": {
+                    "type": "origins:and",
+                    "conditions": [
+                        {
+                            "type": "origins:sneaking",
+                            "inverted": false
+                        }
+                    ]
+                }
+            },
+            "badges": {
+                "type": "origins:tooltip",
+                "sprite": "origins:textures/gui/badge/info.png",
+                "text": "shift secondary to hiss, secondary to purr/meow!"
+            }
+        },
+        {
+            "id": "nocturnal",
+            "category": "catboy",
+            "name": "Nocturnal",
+            "description": "Your feline eyes make you see better at night.",
+            "type": "origins:night_vision",
+            "strength": 0.5
+        },
+        {
+            "id": "notswimmer",
+            "category": "catboy",
+            "name": "Not a Swimmer",
+            "description": "Cats and water don't go along that well, thus you can't swim.",
+            "type": "origins:prevent_sprinting",
+            "condition": {
+                "type": "origins:submerged_in",
+                "fluid": "minecraft:water"
+            }
+        },
+        {
+            "id": "pounce",
+            "category": "catboy",
+            "name": "Pounce",
+            "description": "You can leap forward to get closer to foes.",
+            "type": "origins:active_self",
+            "entity_action": {
+                "type": "origins:and",
+                "actions": [
+                    {
+                        "type": "origins:add_velocity",
+                        "space": "local",
+                        "y": 0.1,
+                        "z": 1
+                    },
+                    {
+                        "type": "origins:spawn_particles",
+                        "particle": {
+                            "type": "minecraft:poof"
+                        },
+                        "count": 16,
+                        "speed": 0.0,
+                        "force": true
+                    },
+                    {
+                        "type": "origins:play_sound",
+                        "sound": "minecraft:block.wool.fall"
+                    },
+                    {
+                        "type": "origins:exhaust",
+                        "amount": 0.4
+                    }
+                ]
+            },
+            "cooldown": 13,
+            "hud_render": {
+                "should_render": false
+            },
+            "key": {
+                "key": "key.origins.primary_active",
+                "continuous": false
+            },
+            "condition": {
+                "type": "origins:and",
+                "conditions": [
+                    {
+                        "type": "origins:on_block",
+                        "inverted": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": "swift",
+            "category": "catboy",
+            "name": "Swift",
+            "description": "You can move more swiftly than others.",
+            "type": "origins:attribute",
+            "modifier": {
+                "name": "Max health increase",
+                "attribute": "minecraft:generic.movement_speed",
+                "value": 1.1,
+                "operation": "multiply_total"
+            }
+        }
+    ],
+    "tags": [
+        {
+            "id": "raw_fish",
+            "category": "items",
+            "values": [
+                "minecraft:cod",
+                "minecraft:cooked_cod",
+                "minecraft:salmon",
+                "minecraft:cooked_salmon",
+                "minecraft:tropical_fish"
+            ]
+        }
+    ]
+}

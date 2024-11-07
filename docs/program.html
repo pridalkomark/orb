@@ -1,0 +1,154 @@
+<html>
+
+<head>
+    <title>orb help: program</title>
+    <style>
+        .navbar {
+            width: 100%;
+            border: 0px solid black;
+            border-collapse: collapse;
+        }
+
+        .navcell {
+            background-color: lightblue;
+            text-align: left;
+            border-left: 1px solid;
+        }
+
+        th {
+            background-color: lightgray;
+            border: 1px solid;
+        }
+
+        td {
+            border: 1px solid;
+        }
+
+        code {
+            background-color: rgb(70, 70, 70);
+            color: white;
+            margin: 3px;
+            border: 1px solid rgb(100, 100, 100);
+            border-radius: 3px;
+        }
+
+        .jsondoc {
+            border: 1px solid black;
+        }
+
+        pre {
+            background-color: lightblue;
+            border: 1px solid black;
+        }
+
+        .blink {
+            animation: blink 1s steps(1, end) infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <link rel="icon" href="favicon.png">
+</head>
+
+<body>
+    <table class="navbar">
+        <tr>
+            <td class="navcell"><b>orb documentation</b></td>
+            <td class="navcell"><a href="help.html">index</a></td>
+            <td class="navcell"><a href="json.html">orb json format</a></td>
+            <td class="navcell"><a href="program.html">program help</a></td>
+            <td class="navcell"><a href="https://origins.readthedocs.io/en/latest/">origins documentation</a> (external)
+            </td>
+            <td class="navcell"><a href="about.html">about</a></td>
+        </tr>
+    </table>
+    <h1>orb</h1>
+    <h2>resolver implementation in python for the json based <a href="https://origins.readthedocs.io/en/latest/">origins
+            mod datapack</a> defenition file format orb.</h2>
+    <p>copyright 2024 pin (<a href="https://pinmac.neocities.org">https://pinmac.neocities.org</a>)</p>
+    <p>this is free software, as in freedom, to use, modify, rework the code as long as you give proper credit, don't
+        claim the original as your own and warn the user if the code has been modified!
+        this software is provided as is, with no warranty, use at one's own risk!</p>
+    <hr>
+    <p><b>you need python 3.10 and up to run the script!</b></p>
+    <h3>command line arguments</h3>
+    <p>usage: <code>orb [-h] [-v] filepath workspace</code></p>
+    <h4>fields</h3>
+        <table class="jsondoc">
+            <tr>
+                <th>option</th>
+                <th>optional</th>
+                <th>description</th>
+            </tr>
+            <tr>
+                <td><code>-h</code>, <code>--help</code></td>
+                <td>yes</td>
+                <td>show a help message and exit</td>
+            </tr>
+            <tr>
+                <td><code>-v</code>, <code>--verbose</code></td>
+                <td>yes</td>
+                <td>print status messages while executing</td>
+            </tr>
+            <tr>
+                <td><code>filepath</code></td>
+                <td>no</td>
+                <td>path to <code>.orb</code> file to resolve</td>
+            </tr>
+            <tr>
+                <td><code>workspace</code></td>
+                <td>no</td>
+                <td>path to folder to work in</td>
+            </tr>
+        </table>
+        <h4>example</h4>
+        <pre>
+$ <b>py orb.py -v catboy.orb test</b><span class="blink">_</span>
+loading parameters
+
+loaded orb file
+defined namespace as pin
+defined pack format as 18
+defined indent level as 4
+should do powerlist/index.md: True
+defined workspace path as test
+
+loaded parameters
+
+creating files and folders
+
+constructed folder structure, made 8 folders.
+constructed pack.mcmeta
+constructed origin pin:catboy
+constructed layer file containing 1 origins
+constructed file pin:catboy/diet
+constructed file pin:catboy/fisher
+constructed file pin:catboy/fragile
+constructed file pin:catboy/meow
+constructed file pin:catboy/nocturnal
+constructed file pin:catboy/notswimmer
+constructed file pin:catboy/pounce
+constructed file pin:catboy/swift
+constructed file pin:items/raw_fish
+
+created files and folders
+
+zipped folder tree
+
+job done in 0.046201229095458984 seconds. processed 30 files and folders.
+        </pre>
+</body>
+
+</html>

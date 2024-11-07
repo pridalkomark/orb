@@ -1,0 +1,307 @@
+<html>
+
+<head>
+    <title>orb help: json</title>
+    <style>
+        .navbar {
+            width: 100%;
+            border: 0px solid black;
+            border-collapse: collapse;
+        }
+
+        .navcell {
+            background-color: lightblue;
+            text-align: left;
+            border-left: 1px solid;
+        }
+
+        th {
+            background-color: lightgray;
+            border: 1px solid;
+        }
+
+        td {
+            border: 1px solid;
+        }
+
+        code {
+            background-color: rgb(70, 70, 70);
+            color: white;
+            margin: 3px;
+            border: 1px solid rgb(100, 100, 100);
+            border-radius: 3px;
+        }
+
+        .jsondoc {
+            border: 1px solid black;
+        }
+
+        pre {
+            background-color: lightblue;
+            border: 1px solid black;
+        }
+    </style>
+    <link rel="icon" href="favicon.png">
+</head>
+
+<body>
+    <table class="navbar">
+        <tr>
+            <td class="navcell"><b>orb documentation</b></td>
+            <td class="navcell"><a href="help.html">index</a></td>
+            <td class="navcell"><a href="json.html">orb json format</a></td>
+            <td class="navcell"><a href="program.html">program help</a></td>
+            <td class="navcell"><a href="https://origins.readthedocs.io/en/latest/">origins documentation</a> (external)
+            </td>
+            <td class="navcell"><a href="about.html">about</a></td>
+        </tr>
+    </table>
+    <h1>orb</h1>
+    <h2><a href="https://www.json.org/">json</a> based <a href="https://origins.readthedocs.io/en/latest/">origins mod
+            datapack</a> defenition file format orb.</h2>
+    <p>note that the program supports C style comments in json files.</p>
+    <hr>
+    <h3>root object</h3>
+    <h4>fields</h3>
+        <table class="jsondoc">
+            <tr>
+                <th>field</th>
+                <th>data type</th>
+                <th>optional</th>
+                <th>description</th>
+            </tr>
+            <tr>
+                <td><code>format</code></td>
+                <td>integer</td>
+                <td>no</td>
+                <td>usual minecraft pack format</td>
+            </tr>
+            <tr>
+                <td><code>namespace</code></td>
+                <td>string</td>
+                <td>no</td>
+                <td>string to use as a namespace for the datapack. must be a valid namespace</td>
+            </tr>
+            <tr>
+                <td><code>description</code></td>
+                <td>string</td>
+                <td>no</td>
+                <td>string to use to describe the pack</td>
+            </tr>
+            <tr>
+                <td><code>indent</code></td>
+                <td>integer</td>
+                <td>no</td>
+                <td>indent level used by the pretty printer</td>
+            </tr>
+            <tr>
+                <td><code>do_powerlist</code></td>
+                <td>boolean</td>
+                <td>yes, <code>false</code> by default</td>
+                <td>should do a markdown formatted power list for ease of sharing</td>
+            </tr>
+            <tr>
+                <td><code>origins</code></td>
+                <td>array</td>
+                <td>no</td>
+                <td>list of origins to define</td>
+            </tr>
+            <tr>
+                <td><code>powers</code></td>
+                <td>array</td>
+                <td>no</td>
+                <td>list of powers to define</td>
+            </tr>
+            <tr>
+                <td><code>tags</code></td>
+                <td>array</td>
+                <td>no</td>
+                <td>list of tags to define</td>
+            </tr>
+        </table>
+        <h4>example</h4>
+        <pre>
+<i>// examle</i>
+{
+    "<b>format</b>": <b>18</b>,
+    "<b>namespace</b>": "<b>testpack</b>",
+    "<b>description</b>": "<b>this is a test</b>",
+    "<b>indent</b>": <b>4</b>,
+    "<b>do_powerlist</b>": <b>true</b>,
+    "<b>origins</b>": [],
+    "<b>powers</b>": [],
+    "<b>tags</b>": []
+}
+        </pre>
+        <hr>
+        <h3>root object/<code>origins</code>/[...]</h3>
+        <p>array of json objects, containing a usual origin definition (see origins documentation) and a custom
+            <code>id</code> field</p>
+        <h4>fields</h3>
+            <table class="jsondoc">
+                <tr>
+                    <th>field</th>
+                    <th>data type</th>
+                    <th>optional</th>
+                    <th>description</th>
+                </tr>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>string</td>
+                    <td>no</td>
+                    <td>filename without <code>.json</code></td>
+                </tr>
+                <tr>
+                    <td>[...]</td>
+                    <td>any</td>
+                    <td>N/A</td>
+                    <td>the rest is usual origin definition</td>
+                </tr>
+            </table>
+            <h4>example</h4>
+            <pre>
+<i>// examle</i>
+"<b>origins</b>": [
+    {
+        "<b>id</b>": "<b>elytrian</b>",
+        <i>// the rest goes as usual</i>
+
+        "name": "Elytrian",
+        "description": "Often flying around in the winds, Elytrians are uncomfortable when they don't have enough space above their head.",
+	    "powers": [
+		    "origins:elytra",
+		    "origins:launch_into_air",
+		    "origins:aerial_combatant",
+		    "origins:light_armor",
+		    "origins:claustrophobia",
+		    "origins:more_kinetic_damage"
+	    ],
+	    "icon": {
+		    "item": "minecraft:elytra"
+	    },
+	    "order": 3,
+	    "impact": 1
+    },
+    {
+        <i>// you can add as many origins as you want</i>
+    }
+]
+        </pre>
+            <hr>
+            <h3>root object/<code>powers</code>/[...]</h3>
+            <p>array of json objects, containing a usual power definition (see origins documentation) and a custom
+                <code>id</code> and <code>category</code> field</p>
+            <h4>fields</h3>
+                <table class="jsondoc">
+                    <tr>
+                        <th>field</th>
+                        <th>data type</th>
+                        <th>optional</th>
+                        <th>description</th>
+                    </tr>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td>string</td>
+                        <td>no</td>
+                        <td>filename without <code>.json</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>category</code></td>
+                        <td>string</td>
+                        <td>yes, ignored if blank</td>
+                        <td>subfolder inside <code>powers</code></td>
+                    </tr>
+                    <tr>
+                        <td>[...]</td>
+                        <td>any</td>
+                        <td>N/A</td>
+                        <td>the rest is usual power definition</td>
+                    </tr>
+                </table>
+                <h4>example</h4>
+                <pre>
+<i>// examle</i>
+"<b>powers</b>": [
+    {
+        "<b>id</b>": "<b>elytrian</b>",
+        <i>// "<b>category</b>": "<b>elytrians</b>", // uncomment this line if you want it to take effect, the base mod doesnt use this</i>
+
+        <i>// the rest goes as usual</i>
+        "name": "Aerial Combatant",
+        "description": "You deal substantially more damage while in Elytra flight.",
+        "type": "origins:modify_damage_dealt",
+        "modifier": {
+            "name": "Extra damage while fall flying",
+            "value": 1,
+            "operation": "multiply_base"
+        },
+        "condition": {
+            "type": "origins:fall_flying"
+        }
+    },
+    {
+        <i>// you can add as many powers as you want</i>
+    }
+]
+        </pre>
+                <hr>
+                <h3>root object/<code>tags</code>/[...]</h3>
+                <p>array of json objects</p>
+                <h4>fields</h3>
+                    <table class="jsondoc">
+                        <tr>
+                            <th>field</th>
+                            <th>data type</th>
+                            <th>optional</th>
+                            <th>description</th>
+                        </tr>
+                        <tr>
+                            <td><code>id</code></td>
+                            <td>string</td>
+                            <td>no</td>
+                            <td>filename without <code>.json</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>category</code></td>
+                            <td>string</td>
+                            <td>no</td>
+                            <td>subfolder inside <code>tags</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>values</code></td>
+                            <td>array</td>
+                            <td>no</td>
+                            <td>array of namespaced ids, most probably strings</td>
+                        </tr>
+                    </table>
+                    <h4>example</h4>
+                    <pre>
+<i>// examle</i>
+"<b>tags</b>": [
+    {
+        "<b>id</b>": "<b>natural_stone</b>",
+        "<b>category</b>": "<b>blocks</b>",
+        <b>"values"</b>: [
+          "#minecraft:base_stone_overworld",
+          "#minecraft:base_stone_nether",
+          "minecraft:sandstone",
+          "minecraft:smooth_sandstone",
+          "minecraft:red_sandstone",
+          "minecraft:smooth_red_sandstone"
+        ]
+    },
+    {
+        <i>// you can add as many tags as you want</i>
+    }
+]
+        </pre>
+                    <hr>
+                    <h3>see also:</h3>
+                    <ul>
+                        <li><a href="https://origins.readthedocs.io/en/latest/">origins mod documentation</a></li>
+                        <li><a href="test.orb">example orb json file</a></li>
+                        <li><a href="https://json.org/">json standard</a></li>
+                    </ul>
+</body>
+
+</html>

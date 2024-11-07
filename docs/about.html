@@ -1,0 +1,178 @@
+<html>
+
+<head>
+    <title>orb help: about</title>
+    <style>
+        .navbar {
+            width: 100%;
+            border: 0px solid black;
+            border-collapse: collapse;
+        }
+
+        .navcell {
+            background-color: lightblue;
+            text-align: left;
+            border-left: 1px solid;
+        }
+
+        th {
+            background-color: lightgray;
+            border: 1px solid;
+        }
+
+        td {
+            border: 1px solid;
+        }
+
+        code {
+            background-color: rgb(70, 70, 70);
+            color: white;
+            margin: 3px;
+            border: 1px solid rgb(100, 100, 100);
+            border-radius: 3px;
+        }
+
+        .compare {
+            align-self: center;
+        }
+
+        .jsondoc {
+            border: 1px solid black;
+        }
+
+        pre {
+            background-color: lightblue;
+            border: 1px solid black;
+        }
+
+        .blink {
+            animation: blink 1s steps(1, end) infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .prevent-select {
+            -webkit-user-select: none;
+            /* Safari */
+            -ms-user-select: none;
+            /* IE 10 and IE 11 */
+            user-select: none;
+            /* Standard syntax */
+        }
+    </style>
+    <link rel="icon" href="favicon.png">
+</head>
+
+<body>
+    <table class="navbar">
+        <tr>
+            <td class="navcell"><b>orb documentation</b></td>
+            <td class="navcell"><a href="help.html">index</a></td>
+            <td class="navcell"><a href="json.html">orb json format</a></td>
+            <td class="navcell"><a href="program.html">program help</a></td>
+            <td class="navcell"><a href="https://origins.readthedocs.io/en/latest/">origins documentation</a> (external)
+            </td>
+            <td class="navcell"><a href="about.html">about</a></td>
+        </tr>
+    </table>
+    <h1>orb</h1>
+    <h2>the simple and open source origins datapack creator</h2>
+    <h3>simple</h3>
+    <p>orb is both the file format and the resolver. the file format is just json, which you may be familiar with if you
+        have created minecraft datapacks before. then what is different about orb? you dont need a whole folder
+        structure for your datapack, just a single json file. just one. and it can have C style comments too! simple!
+    </p>
+    <p>if you have your <a href="json.html">orb json file</a> prepared, you just put it trough <a
+            href="program.html">the resolver</a> and boom: a new datapack is born!
+        pre zipped with a markdown file list for ease of sharing!</p>
+    <table align="center">
+        <tr>
+            <td>
+                <pre>{
+    "format": 18,
+    "namespace": "testpack",
+    "description": "this is a test",
+    "indent": 4,
+    "do_powerlist": true,
+    // list of origins to define
+    "origins": [
+        {
+            "id": "test_origin",
+            "powers": [
+                "testpack:test_power"
+            ],
+            "name": "Test",
+            "description": "Creatures made by a stupid python script.",
+            "icon": "minecraft:stone",
+            "impact": 1
+        }
+    ],
+    // list of powers to define
+    "powers": [
+        {
+            "id": "test_power",
+            "category": "test",
+            "name": "Test Power",
+            "description": "Power made by a stupid python script.",
+            "type": "origins:simple"
+        }
+    ],
+    "tags": [
+        {
+            "id": "test_tag",
+            "category": "item",
+            "values": [
+                "minecraft:stick"
+            ]
+        }
+    ]
+}</pre>
+            </td>
+            <td align="center">becomes<br>→</td>
+            <td>
+                <ul>
+                    <li>a zip file, valid datapack</li>
+                    <li>an unzipped valid datapack</li>
+                    <li>if set, a markdown formatted power list (discord compatible)</li>
+                </ul>
+                <p style="padding-left: 5%;"><b>without</b> having to</p>
+                <ul>
+                    <li>create multiple folders manually</li>
+                    <li>go online</li>
+                    <li>mess with the <code>origin_layers/origin.json</code> file</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <h2 style="background-color: lightgreen;" align="center"><a href="#top" class="blink">interested? try it now!</a>
+    </h2>
+    <hr>
+    <h3>setup guide</h3>
+    <ol>
+        <li>check if <a href="https://www.python.org/">python 3.10.x or up</a> is installed and set up <i>(Microsoft
+                Windows™ and macOS™ comes with python pre installed)</i></li>
+        <li>you have a way to unzip <code>zip</code> files</li>
+        <br>
+        <li>unzip the package you downloaded into an empty folder</li>
+        <li>check if you have <code>./ orb.py</code> and a folder named <code>./ docs /</code></li>
+        <li>run the command <code><span class="prevent-select">$ </span>python orb.py -h</code> from your preferred
+            command line</li>
+        <br>
+        <li>if you get a help message, <b>get datapacking!</b> read the instructions at <a href="json.html">the orb json
+                documentation</a>, then <a href="program.html">transpile your orb file to a datapack</a>!</li>
+    </ol>
+</body>
+
+</html>

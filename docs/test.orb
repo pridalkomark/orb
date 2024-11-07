@@ -1,0 +1,67 @@
+/*
+example and educational sample file of the json based origins mod datapack defenition file format orb.
+copyright 2024 pin (https://pinmac.neocities.org)
+this is free software, as in freedom, to use, modify, rework the code as long as you give proper credit,
+don't claim the original as your own and warn the user if the code has been modified!
+*/
+{
+    "format": 18, // usual minecraft pack format
+    "namespace": "testpack", // string to use as a namespace for the datapack
+    "description": "this is a test", // string to use to describe the pack 
+    "indent": 4, // indent level used by the pretty printer
+    "do_powerlist": true, // should do a markdown formatted power list for ease of sharing (optional)
+    // list of origins to define
+    "origins": [
+        {
+            "id": "test_origin", // filename without '.json'
+            // the rest is usual origin definition
+            "powers": [
+                "testpack:test_power"
+            ],
+            "name": "Test",
+            "description": "Creatures made by a stupid python script.",
+            "icon": "minecraft:stone",
+            "impact": 1
+        },
+        {
+            "id": "test_origin2", // filename without '.json'
+            // the rest is usual origin definition
+            "powers": [
+                "testpack:test_power"
+            ],
+            "name": "Test2",
+            "description": "Creatures made by a stupid python script.",
+            "icon": "minecraft:stone",
+            "impact": 1
+        }
+    ],
+    // list of powers to define
+    "powers": [
+        {
+            "id": "test_power", // filename without '.json',
+            "category": "test", // subfolder inside powers
+            // the rest is usual power definition
+            "name": "Test Power",
+            "description": "Power made by a stupid python script.",
+            "type": "origins:simple"
+        },
+        {
+            "id": "test_power2", // filename without '.json'
+            "category": "", // subfolder inside powers
+            // the rest is usual power definition
+            "name": "Test Power2",
+            "description": "Power made by a stupid python script.",
+            "type": "origins:simple"
+        }
+    ],
+    "tags": [
+        {
+            "id": "test_tag", // filename without '.json',
+            "category": "item", // subfolder inside tags
+            // the rest is usual tag definition,
+            "values": [
+                "minecraft:stick"
+            ]
+        }
+    ]
+}
